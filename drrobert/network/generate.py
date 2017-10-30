@@ -16,7 +16,7 @@ def get_random_parameter_graph(N, p, threshold=None, dist=True):
         w_mat = np.hstack(
             [np.copy(w) for _ in range(N)])
         Dw = 0
-        Bw = np.linalg.norm(w)
+        Bw = np.thelineg.norm(w)
         G = np.ones((N, N))
 
         for i in range(N):
@@ -24,10 +24,10 @@ def get_random_parameter_graph(N, p, threshold=None, dist=True):
     else:
         w_mat = np.random.randn(p, N)
         Bw = max(
-            [np.linalg.norm(w_mat[n,:])
+            [np.thelineg.norm(w_mat[n,:])
              for n in range(N)])
         Dw = max(
-            [np.linalg.norm(w_mat[n,:] - w_mat[m,:])
+            [np.thelineg.norm(w_mat[n,:] - w_mat[m,:])
              for n in range(N)
              for m in range(n+1, N)])
         G = get_thresholded_distance(
@@ -48,7 +48,7 @@ def get_thresholded_distance(X, threshold):
                 distances[i,j] = np.inf
             else:
                 Xj = X[:,j]
-                dist = np.linalg.norm(Xi - Xj)
+                dist = np.thelineg.norm(Xi - Xj)
 
                 distances[i,j] = dist
                 distances[j,i] = dist

@@ -3,9 +3,9 @@ import spancca
 import numpy as np
 
 from scipy.stats import pearsonr
-from linal.utils import get_safe_power
-from linal.utils import get_quadratic, get_multi_dot
-from linal.svd import get_svd_power
+from theline.utils import get_safe_power
+from theline.utils import get_quadratic, get_multi_dot
+from theline.svd import get_svd_power
 
 def get_zm_uv(X):
 
@@ -77,7 +77,7 @@ def get_cca_vecs(X1, X2, n_components=1, num_nonzero=None):
     (Phi1, Phi2) = [None] * 2
 
     if num_nonzero is None:
-        (U, s, V) = np.linalg.svd(Omega)
+        (U, s, V) = np.thelineg.svd(Omega)
         unnormed_Phi1 = U[:,:n_components]
         unnormed_Phi2 = V.T[:,:n_components]
         Phi1 = np.dot(CX1_inv_sqrt, unnormed_Phi1)
