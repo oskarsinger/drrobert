@@ -3,7 +3,7 @@ import numpy as np
 def is_fully_connected(G):
 
     L = get_Laplacian(G)
-    L_rank = np.thelineg.matrix_rank(L)
+    L_rank = np.linalg.matrix_rank(L)
 
     return L_rank == L.shape[0]
 

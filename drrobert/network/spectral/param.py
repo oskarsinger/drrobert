@@ -20,7 +20,7 @@ class L2RegularizedAppDetRandomParameterGraph:
         self.d = np.sum(self.G, axis=1)
         self.L = np.diag(self.d) - self.G
 
-        (self.e_vals, self.e_vecs) = np.thelineg.eig(self.L)
+        (self.e_vals, self.e_vecs) = np.linalg.eig(self.L)
 
 class L2RegularizedParameterGraph:
 
@@ -33,7 +33,7 @@ class L2RegularizedParameterGraph:
         self.p = self.ws.shape[0]
         self.d = np.sum(self.G, axis=1)
         self.L = np.diag(self.d) - self.G
-        (self.e_vals, self.e_vecs) = np.thelineg.eig(self.L)
+        (self.e_vals, self.e_vecs) = np.linalg.eig(self.L)
 
     def get_logdet(self, loc, scale):
 
@@ -69,7 +69,7 @@ class L2RegularizedRandomParameterGraph:
             dist=dist)
         self.d = np.sum(self.G, axis=1)
         self.L = np.diag(self.d) - self.G
-        (self.e_vals, self.e_vecs) = np.thelineg.eig(self.L)
+        (self.e_vals, self.e_vecs) = np.linalg.eig(self.L)
 
     def get_logdet(self, loc, scale):
 
