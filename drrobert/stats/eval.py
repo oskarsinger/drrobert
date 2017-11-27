@@ -13,7 +13,8 @@ def get_binary_classification_eval(y, y_hat):
     sensitivity = tp / p
     specificity = tn / n
     precision = 0 if tp == 0 else tp / p_hat
-    f1 = 2 * precision * sensitivity / (precision + sensitivity)
+    f1 = 0 if precision == 0 and sensitivity == 0 else \
+        2 * precision * sensitivity / (precision + sensitivity)
 
     return {
         'accuracy': accuracy,
