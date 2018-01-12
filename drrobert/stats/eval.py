@@ -17,7 +17,7 @@ def get_binary_classification_eval(y, y_hat):
     precision = 1 if p_hat == 0 else tp / p_hat
     f1 = 0 if precision + sensitivity == 0 else \
         2 * precision * sensitivity / (precision + sensitivity)
-    auroc = roc_auc(y, y_hat)
+    auroc = roc_auc_score(y, y_hat)
 
     return {
         'accuracy': accuracy,
