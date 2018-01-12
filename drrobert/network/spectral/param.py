@@ -24,12 +24,33 @@ class L2RegularizedAppDetRandomParameterGraph:
 
 class L2RegularizedParameterGraph:
 
-    def __init__(self, G, ws):
+    def __init__(self, G, ws, Bw=None, Dw=None):
 
         self.G = G
         self.ws = ws
 
         self.N = self.G.shape[0]
+
+        if Bw is None:
+            Bw = max(
+                [np.linalg.norm(self.ws[:,i]) 
+                 for i in range(self.ws.shape[1])])
+
+        self.Bw = Bw
+
+        if Dw is None:
+            Dw = 0
+
+            for n in range(self.N):
+                Xn = self.ws[:,n]
+                for m in range(n+1, self.N):
+                    Xm = self.ws[:,m]
+                    dist = np.linalg.norm(Xn - Xm)
+
+                    if dist > Dw:
+                        Dw = dist
+
+        self.Dw = Dw
         self.p = self.ws.shape[0]
         self.d = np.sum(self.G, axis=1)
         self.L = np.diag(self.d) - self.G

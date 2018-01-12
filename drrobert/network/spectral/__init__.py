@@ -1,1 +1,2 @@
 from .param import L2RegularizedRandomParameterGraph
+from .param import L2RegularizedParameterGraph
