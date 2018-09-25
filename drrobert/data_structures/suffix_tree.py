@@ -1,4 +1,4 @@
-class SuffixTree():
+class SuffixTree:
 
     def __init__(self, vocabulary):
         self.vocabulary = vocabulary
