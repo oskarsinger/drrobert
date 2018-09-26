@@ -1,3 +1,4 @@
+# TODO: implement find all
 class SuffixTree:
 
     def __init__(self, vocabulary=None):
