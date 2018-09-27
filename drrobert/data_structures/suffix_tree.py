@@ -64,6 +64,63 @@ class SuffixTree:
 
         return (has_word, value)
 
+    def find_all(self, begin, end, subword):
+
+        return self._recursive_find_all(
+            self.tree, 
+            begin, 
+            end, 
+            subword,
+            0)
+
+    def _recursive_find_all(self, subtree, begin, end, subword, depth):
+
+        values = []
+
+        if depth >= begin and depth < end - 1:
+            letter = subword[depth - begin]
+            
+            if letter in subtree:
+                next_vals = self._recursive_find_all(
+                    subtree[letter].children,
+                    begin,
+                    end,
+                    subword,
+                    depth+1)
+
+                values.extend(next_vals)
+        elif depth == end - 1:
+            letter = subword[depth - begin]
+            
+            if letter in subtree:
+                if subtree[letter].is_terminal:
+                    values.append(subtree[letter].value)
+
+                next_vals = self._recursive_find_all(
+                    subtree[letter].children,
+                    begin,
+                    end,
+                    subword,
+                    depth+1)
+
+                values.extend(next_vals)
+        else:
+            current_vals = [n.value for n in subtree.values()
+                            if n.is_terminal]
+
+            values.extend(current_vals)
+
+            next_values = self._recursive_find_all(
+                subtree[letter].children,
+                begin,
+                end,
+                subword,
+                depth+1)
+
+            values.extend(next_vals)
+
+        return values
+
 class Node:
 
     def __init__(self, is_terminal, value=None):
